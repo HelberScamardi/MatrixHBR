@@ -1,13 +1,8 @@
+import os
 import gradio as gr
 
-def ia_matrizhbr(pergunta):
-    return f"IA MatrizHBR: Recebi '{pergunta}'. Bora automatizar e escalar! 🚀"
+# ... seu código ...
 
-interface = gr.Interface(
-    fn=ia_matrizhbr,
-    inputs=gr.Textbox(label="Fale com a MatrizHBR"),
-    outputs=gr.Textbox(label="Resposta"),
-    title="MatrizHBR IA",
-    description="Automatize tarefas chatas para escalar e dominar"
-)
-interface.launch()
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 10000))
+    demo.launch(server_name="0.0.0.0", server_port=port)
