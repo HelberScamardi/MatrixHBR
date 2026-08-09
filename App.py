@@ -8,12 +8,11 @@ def calcular(conta):
     except:
         return "❌ Erro! Use só números e + - * / ^"
 
-# TEMA MATRIX VERDE
 css = """
 body {background: #000 !important;}
 .gradio-container {background: #000 !important;}
 h1, h3, p {color: #00FF00 !important; text-align: center;}
-button {background: #00FF00 !important; color: #000 !important; border: none !important;}
+button {background: #00FF00 !important; color: #000 !important;}
 button:hover {background: #00CC00 !important;}
 textarea, input {background: #0A0A0A !important; color: #00FF00 !important; border: 1px solid #00FF00 !important;}
 """
@@ -36,4 +35,8 @@ with gr.Blocks(css=css, theme=gr.themes.Base(), title="MatrixHBR") as demo:
     
     gr.Examples(["2 + 2", "10 * 5", "100 / 4"], inputs=entrada)
     
-    btn_calcular.click(fn=calcular, inputs=entrada
+    btn_calcular.click(fn=calcular, inputs=entrada, outputs=saida)
+    btn_limpar.click(lambda: ["", ""], outputs=[entrada, saida])
+
+port = int(os.environ.get("PORT", 10000))
+demo.launch(server_name="0.0.0.0", server_port=port)
