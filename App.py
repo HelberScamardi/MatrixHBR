@@ -8,8 +8,9 @@ def calcular(conta):
         return "❌ Erro! Use só números e +-*/"
 
 # LINK DA SUA LOGO AQUI
-    URL_LOGO = "https://githubusercontent.com/HelberScarr/MatrixHBR/main/ChatGPT%20Image%207%20de%20ago.%20de%202026%2C%2018_49_29.png"
-with gr.Blocks(theme=gr.themes.Default(), css=".gradio-container {background-color: #000000} h1 {color: #00FF00} h2 {color: #00FF00}") as demo:
+URL_LOGO = "https://raw.githubusercontent.com/HelberScarr/MatrixHBR/main/ChatGPT%20Image%207%20de%20ago.%20de%202026%2C%2018_49_29.png"
+
+with gr.Blocks(theme=gr.themes.Default(), css=".gradio-container {background-color: #000} h1 {color: #00FF00} h2 {color: #00FF00}") as demo:
     
     # AQUI ENTRA A LOGO
     gr.Image(value=URL_LOGO, show_label=False, height=200)
