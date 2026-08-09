@@ -1,42 +1,32 @@
 import gradio as gr
-import os
 
 def calcular(conta):
     try:
         resultado = eval(conta)
         return f"✅ Resultado: {resultado}"
     except:
-        return "❌ Erro! Use só números e + - * / ^"
+        return "❌ Erro! Use só números e +-*/"
 
-css = """
-body {background: #000 !important;}
-.gradio-container {background: #000 !important;}
-h1, h3, p {color: #00FF00 !important; text-align: center;}
-button {background: #00FF00 !important; color: #000 !important;}
-button:hover {background: #00CC00 !important;}
-textarea, input {background: #0A0A0A !important; color: #00FF00 !important; border: 1px solid #00FF00 !important;}
-"""
+# LINK DA SUA LOGO AQUI
+URL_LOGO = "COLA_O_LINK_DA_LOGO_AQUI"
 
-with gr.Blocks(css=css, theme=gr.themes.Base(), title="MatrixHBR") as demo:
+with gr.Blocks(theme=gr.themes.Default(), css=".gradio-container {background-color: #000000} h1 {color: #00FF00} h2 {color: #00FF00}") as demo:
     
-    gr.Image("COLE_O_LINK_DA_LOGO_AQUI", show_label=False, height=280)
+    # AQUI ENTRA A LOGO
+    gr.Image(value=URL_LOGO, show_label=False, height=200)
     
-    gr.Markdown("# MATRIXHBR")
-    gr.Markdown("### Intelligent Problem Solver")
-    gr.Markdown("---")
+    gr.Markdown("<h1 style='text-align: center'>MATRIXHBR</h1>")
+    gr.Markdown("<h2 style='text-align: center'>Intelligent Problem Solver</h2>")
     
     with gr.Row():
-        entrada = gr.Textbox(label="Digite sua conta", placeholder="Ex: 15*4 + 10")
-        saida = gr.Textbox(label="Resposta", interactive=False)
+        input_conta = gr.Textbox(label="Digite sua conta", placeholder="Ex: 15*4 + 10")
+        output_resultado = gr.Textbox(label="Resposta", interactive=False)
     
     with gr.Row():
-        btn_calcular = gr.Button("▶ Calcular", variant="primary", size="lg")
-        btn_limpar = gr.Button("🗑️ Limpar", size="lg")
-    
-    gr.Examples(["2 + 2", "10 * 5", "100 / 4"], inputs=entrada)
-    
-    btn_calcular.click(fn=calcular, inputs=entrada, outputs=saida)
-    btn_limpar.click(lambda: ["", ""], outputs=[entrada, saida])
+        btn_calcular = gr.Button("▶ Calcular", variant="primary")
+        btn_limpar = gr.Button("🧹 Limpar")
 
-port = int(os.environ.get("PORT", 10000))
-demo.launch(server_name="0.0.0.0", server_port=port)
+    btn_calcular.click(fn=calcular, inputs=input_conta, outputs=output_resultado)
+    btn_limpar.click(fn=lambda: ("", ""), inputs=None, outputs=[input_conta, output_resultado])
+
+demo.launch()
