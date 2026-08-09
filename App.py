@@ -7,7 +7,7 @@ def responder(texto):
 demo = gr.Interface(
     fn=responder,
     inputs="text",
-    outputs="text",  # ESSA LINHA É A CHAVE
+    outputs="text",  # <-- ESSA LINHA QUE FALTA
     title="MatrixHBR"
 )
 
